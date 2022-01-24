@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Fitter</title>
+    <script src="./bundle.js" defer></script>
+</head>
+<body>
+    <main class="main boxed">
+        <section class="dimentions boxed">
+            <p>Dimentions in pixels</p>
+            <div>
+                <input type="number" name="width" id="width" value=100>
+                <span>×</span>
+                <input type="number" name="height" id="height" value=100>
+            </div>
+        </section>
+        <section class="gallery"></section>
+        <section id="input-files">
+            <label for="file-input" class="file-input-label butt">Upload Image(s)</label>
+            <input type="file" accept=".jpeg, .jpg, .png" id="file-input" multiple>
+        </section>
+        <section class="processing">
+            <button class="butt process hidden">Process</button>
+        </section>
+        <section class="download-images hidden">
+            <a href="#" id="download-more-rem" class="butt">Download Images</a>
+            <a href="#" id="download-zip" class="butt">Download as ZIP</a>
+        </section>
+    </main>
+</body>
+</html>
