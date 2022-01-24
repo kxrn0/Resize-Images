@@ -1,0 +1,184 @@
+*, *::before, *::after {
+    margin : 0;
+    padding : 0;
+    box-sizing: border-box;
+}
+
+body {
+    background : seashell;
+}
+
+.boxed {
+    padding : 10px;
+    border-radius : 10px;
+    box-shadow : 0 5px 10px 3px rgb(114, 114, 161);
+}
+
+.main {
+    width : 900px;
+    background : deepskyblue;
+    margin : 50px auto;
+    display : flex;
+    flex-direction : column;
+    align-items: center;
+}
+
+.butt {
+    width : 200px;
+    background : rgb(127, 218, 118);
+    font-size : 20px;
+    padding : 10px;
+    text-align: center;
+    border-radius : 5px;
+}
+
+.butt:active {
+    transform : scale(.99);
+}
+
+/* DIMENTIONS */
+
+.dimentions {
+    background : rgb(104, 228, 141);
+    width : 300px;
+    text-align: center;
+    margin-bottom : 20px;
+}
+
+.dimentions input[type="number"] {
+    width : 100px;
+    padding : 5px;
+    font-size : 18px;
+    text-align: center;
+}
+
+/* GALLERY */
+
+.gallery {
+    border : 2px solid red;
+    width : 800px;
+    height : 600px;
+    border-radius : 5px;
+    margin : 10px;
+    padding : 10px;
+    overflow : auto;
+    display : flex;
+    flex-wrap : wrap;
+}
+
+.column img {
+    width : 100%;
+    height : auto;
+}
+
+.delet {
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    position : absolute;
+    top : 5px;
+    right : 5px;
+    background : rgba(240, 250, 255, .9);
+    color : red;
+    padding : 5px;
+    font-size : 16px;
+    width : 25px;
+    height : 25px;
+    border-radius : 50%;
+    cursor : pointer;
+}
+
+::-webkit-scrollbar {
+    width : 10px;
+}
+
+::-webkit-scrollbar-track {
+    background : rgb(170, 212, 231);
+}
+
+::-webkit-scrollbar-thumb {
+    background : rgb(47, 123, 223);
+    border-radius : 5px;
+}
+
+/* INPUT FILES */
+
+#file-input {
+    display : none;
+}
+
+.file-input-label {
+    display : block;
+    background : rgb(127, 218, 118);
+    color : sienna;
+}
+
+.file-input-label:hover {
+    background : rgb(120, 212, 111);
+}
+
+.file-input-label:active {
+    background : rgb(136, 199, 100);
+}
+
+/* DOWNLOAD FILES */
+
+.download-images {
+    display : flex;
+    justify-content: space-around;
+    width : 500px;
+    margin : 20px;
+}
+
+.download-images a {
+    text-decoration: none;
+}
+
+#download-more-rem {
+    background : rgb(212, 141, 113);
+    color : azure;
+}
+
+#download-more-rem:hover {
+    background : rgb(199, 130, 103);
+}
+
+#download-more-rem:active {
+    background : rgb(175, 106, 85);
+}
+
+#download-zip {
+    background : greenyellow;
+    color : sienna;
+}
+
+#download-zip:hover {
+    background : rgb(145, 219, 33);
+}
+
+#download-zip:active {
+    background : rgb(163, 179, 26);
+}
+
+/* PROCESS */
+
+.process {
+    background : rgb(143, 35, 143);
+    margin : 10px;
+    color : azure;
+}
+
+.process:hover {
+    background : rgb(126, 28, 121);
+}
+
+.process:active {
+    background : rgb(114, 26, 80);
+    transform : scale(.99);
+}
+
+/* HIDDEN */
+
+.hidden {
+    display : none;
+}
