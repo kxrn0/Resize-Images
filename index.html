@@ -9,10 +9,16 @@
 </head>
 <body>
     <main class="main boxed">
+        <section class="loading-screen hidden">
+            <div class="loading-content">
+                <img src="../src/loading-gif.gif" alt="loading icon">
+                <p>The images are being processed, please wait warmly</p>
+            </div>
+        </section>
         <section class="dimentions boxed">
             <p>Dimentions in pixels</p>
             <div>
-                <input type="number" name="width" id="width" value=100>
+                <input type="number" name="width" id="width" value=200>
                 <span>×</span>
                 <input type="number" name="height" id="height" value=100>
             </div>
@@ -25,10 +31,11 @@
         <section class="processing">
             <button class="butt process hidden">Process</button>
         </section>
-        <section class="download-images hidden">
+        <button class="download-images hidden">Download Images</button>
+        <!-- <section class="download-images hidden">
             <a href="#" id="download-more-rem" class="butt">Download Images</a>
             <a href="#" id="download-zip" class="butt">Download as ZIP</a>
-        </section>
+        </section> -->
     </main>
 </body>
 </html>
