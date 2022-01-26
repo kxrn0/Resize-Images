@@ -1,10 +1,14 @@
 import "./style.css";
-import { fun } from "./test"
+import { set_canvas_dimentions, fit_image } from "./fitness";
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
 
 const fileInput = document.getElementById("file-input");
 const processButt = document.querySelector(".process");
+const downloadButt = document.querySelector(".download-images");
+const gallery = document.querySelector(".gallery");
 let columns, id = 0;
-let imageDivs = [];
+let imageDivs = [], imageData = [];
 
 fileInput.addEventListener("change", () => {
     if (!columns) {
@@ -15,7 +19,7 @@ fileInput.addEventListener("change", () => {
             column.style.flex = `${100 / columns}`;
             column.style.maxWidth = `${100 / columns}`;
             column.dataset.number = i;
-            document.querySelector(".gallery").appendChild(column);
+            gallery.appendChild(column);
         }
     }
 
@@ -42,48 +46,71 @@ fileInput.addEventListener("change", () => {
             div.appendChild(img);
             document.querySelector(`[data-number="${id++ % columns}"]`).appendChild(div);
             imageDivs.push(div);
+
+            if (i == fileInput.files.length - 1) {
+                processButt.innerText = `Process ${imageDivs.length} image${imageDivs.length > 1 ? 's' : ''}`;
+            }
         });
     }
 
-    processButt.innerText = `Process ${fileInput.files.length} images`;
     processButt.classList.remove("hidden");
 });
 
 processButt.addEventListener("click", () => {
+    const inputWidth = document.getElementById("width");
+    const inputHeight = document.getElementById("height");
+    const loadingScreen = document.querySelector(".loading-screen");
+    let width, height, count;
 
-    
+    loadingScreen.classList.remove("hidden");
 
-    //--------------------------------------------------------------------------------------
+    width = inputWidth.value ? inputWidth.value : 100;
+    height = inputHeight.value ? inputHeight.value : 100;
+    count = 0;
 
-    //fun();
-    
-    //CREATE A CANVAS
-    //DRAW A BUNCH OF LINES ON IT
-    //GET THE BASE64 STRING OF THE DATA IMAGE
-    //REPLACE THE SECOND IMAGE IN THE GALLERY WITH THE BASE64 DATA
+    set_canvas_dimentions(width, height);
 
-    // const canvas = document.createElement("canvas");
-    // const context = canvas.getContext("2d");
+    let promises;
 
-    // canvas.width = 500;
-    // canvas.height = 500;
+    promises = [];
+    for (let div of imageDivs) {
+        let img;
 
-    // for (let i = 0; i < 100; i++) {
-    //     let x, y;
+        img = div.querySelector("img");
+        promises.push(fit_image(img));
+    }
 
-    //     x = Math.floor(Math.random() * canvas.width);
-    //     y = Math.floor(Math.random() * canvas.height);
-    //     context.moveTo(x, y);
-    //     x = Math.floor(Math.random() * canvas.width);
-    //     y = Math.floor(Math.random() * canvas.height);
-    //     context.lineTo(x, y);
-    //     context.stroke();
-    // }
+    Promise.all(promises).then(values => {
+        loadingScreen.classList.add("hidden");
+        for (let i = 0; i < values.length; i++) {
+            imageDivs[i].querySelector("img").src = values[i];
+            imageData.push(values[i])
+        }
 
-    /**
-     * GET THE DIV THAT YOU WANT TO CHANGE THE IMAGE FROM
-     * CHANGE THE src ATTRIBUTE OF THE IMAGE ELEMENT INSIDE THAT DIV
-     */
-    // const img = document.querySelector("[data-id='6']").querySelector("img");
-    // img.src = canvas.toDataURL();
+        fileInput.parentElement.classList.add("hidden");
+        processButt.classList.add("hidden");    
+        downloadButt.classList.remove("hidden");    
+    });
+});
+
+downloadButt.addEventListener("click", () => {
+    let zip, folder;
+
+    zip = new JSZip();
+    folder = zip.folder("images");
+    for (let image of imageData) {
+        let name;
+
+        name = "image_"
+        for (let i = 0; i < 6; i++)
+            name += Math.floor(Math.random() * 10);
+        folder.file(name, image.split(',')[1], { base64 : true });
+    }
+
+    zip.generateAsync({ type : "blob" }).then(blob => saveAs(blob, "images_folder"));
+
+    downloadButt.classList.add("hidden");
+    gallery.innerHTML = '';
+    fileInput.classList.remove("hidden");
+    processButt.classList.remove("hidden");
 });
