@@ -2,6 +2,7 @@ import "./style.css";
 import { set_canvas_dimentions, fit_image } from "./fitness";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
+import loadingGif from "./loading-gif.gif";
 
 const fileInput = document.getElementById("file-input");
 const processButt = document.querySelector(".process");
@@ -9,6 +10,19 @@ const downloadButt = document.querySelector(".download-images");
 const gallery = document.querySelector(".gallery");
 const loadingScreen = document.querySelector(".loading-screen");
 let id, imageDivs;
+
+function setup_loading_screen() {
+    const loadingContent = document.querySelector(".loading-content");
+    let loadingIcon, loadingParag;
+
+    loadingIcon = document.createElement("img");
+    loadingIcon.src = loadingGif;
+    loadingParag = document.createElement("p");
+    loadingParag.innerText = "The images are being processed, please wait warmly.";
+    
+    loadingContent.appendChild(loadingIcon);
+    loadingContent.appendChild(loadingParag);
+}
 
 function name_image() {
     let name;
@@ -154,3 +168,5 @@ downloadButt.addEventListener("click", () => {
 });
 
 init();
+
+setup_loading_screen();
