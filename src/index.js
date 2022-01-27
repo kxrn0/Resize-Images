@@ -1,6 +1,6 @@
 import "./style.css";
 import { set_canvas_dimentions, fit_image } from "./fitness";
-import JSZip, { file, files } from "jszip";
+import JSZip from "jszip";
 import { saveAs } from "file-saver";
 
 const fileInput = document.getElementById("file-input");
@@ -99,6 +99,7 @@ processButt.addEventListener("click", () => {
     const inputWidth = document.getElementById("width");
     const inputHeight = document.getElementById("height");
     const loadingScreen = document.querySelector(".loading-screen");
+
     let width, height;
 
     loadingScreen.classList.remove("hidden");
