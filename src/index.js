@@ -30,6 +30,7 @@ function name_image() {
     name = "image_";
     for (let i = 0; i < 6; i++)
         name += Math.floor(Math.random() * 10);
+    name += ".png";
     return name;
 }
 
