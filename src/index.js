@@ -7,6 +7,7 @@ const fileInput = document.getElementById("file-input");
 const processButt = document.querySelector(".process");
 const downloadButt = document.querySelector(".download-images");
 const gallery = document.querySelector(".gallery");
+const loadingScreen = document.querySelector(".loading-screen");
 let id, imageDivs;
 
 function name_image() {
@@ -95,13 +96,20 @@ fileInput.addEventListener("change", () => {
     processButt.classList.remove("hidden");
 });
 
-processButt.addEventListener("click", () => {
+
+//https://stackoverflow.com/questions/37953871/how-to-force-repaint-in-js
+function processing() {
+    requestAnimationFrame(() => {
+        loadingScreen.classList.remove("hidden");
+
+        setTimeout(compute, 1);
+    });
+}
+
+function compute() {
     const inputWidth = document.getElementById("width");
     const inputHeight = document.getElementById("height");
-    const loadingScreen = document.querySelector(".loading-screen");
     let width, height, promises;
-
-    loadingScreen.classList.remove("hidden");
 
     width = inputWidth.value ? inputWidth.value : 100;
     height = inputHeight.value ? inputHeight.value : 100;
@@ -125,7 +133,9 @@ processButt.addEventListener("click", () => {
         processButt.classList.add("hidden");
         downloadButt.classList.remove("hidden");
     });
-});
+}
+
+processButt.addEventListener("click", processing);
 
 downloadButt.addEventListener("click", () => {
     let zip, folder;
