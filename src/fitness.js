@@ -6,14 +6,6 @@ export function set_canvas_dimentions(width, height) {
     canvas.height = height;
 }
 
-// export function fit_image(image) {
-//     return new Promise(resolve => {
-//         context.clearRect(0, 0, canvas.width, canvas.height);
-//         fit(image);
-//         resolve(canvas.toDataURL());
-//     });
-// }
-
 export function fit_image(image) {
     return new Promise((resolve, _) => {
         context.clearRect(0, 0, canvas.width, canvas.height);

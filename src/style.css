@@ -153,45 +153,6 @@ body {
     background : rgb(136, 199, 100);
 }
 
-/* DOWNLOAD FILES */
-
-.download-images {
-    display : flex;
-    justify-content: space-around;
-    width : 500px;
-    margin : 20px;
-}
-
-.download-images a {
-    text-decoration: none;
-}
-
-#download-more-rem {
-    background : rgb(212, 141, 113);
-    color : azure;
-}
-
-#download-more-rem:hover {
-    background : rgb(199, 130, 103);
-}
-
-#download-more-rem:active {
-    background : rgb(175, 106, 85);
-}
-
-#download-zip {
-    background : greenyellow;
-    color : sienna;
-}
-
-#download-zip:hover {
-    background : rgb(145, 219, 33);
-}
-
-#download-zip:active {
-    background : rgb(163, 179, 26);
-}
-
 /* PROCESS */
 
 .process {
@@ -217,9 +178,7 @@ body {
     font-size : 16px;
     background :rgb(47, 123, 223);
     color : azure;
-    width : 200px;.download-images:hover {
-        background :rgb(41, 76, 192);
-    }
+    width : 200px;
     border-radius : 3px;
 }
 
