@@ -99,8 +99,7 @@ processButt.addEventListener("click", () => {
     const inputWidth = document.getElementById("width");
     const inputHeight = document.getElementById("height");
     const loadingScreen = document.querySelector(".loading-screen");
-
-    let width, height;
+    let width, height, promises;
 
     loadingScreen.classList.remove("hidden");
 
@@ -108,8 +107,6 @@ processButt.addEventListener("click", () => {
     height = inputHeight.value ? inputHeight.value : 100;
 
     set_canvas_dimentions(width, height);
-
-    let promises;
 
     promises = [];
     for (let div of imageDivs) {
